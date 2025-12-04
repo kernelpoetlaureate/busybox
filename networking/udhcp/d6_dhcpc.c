@@ -1940,3 +1940,4 @@ int udhcpc6_main(int argc UNUSED_PARAM, char **argv)
 		remove_pidfile(client_data.pidfile);
 	return retval;
 }
+// Test: spelling fixed
