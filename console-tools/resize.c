@@ -63,8 +63,8 @@ int resize_main(int argc UNUSED_PARAM, char **argv UNUSED_PARAM)
 	 * and operate on it - should we do the same?
 	 */
 
-	tcgetattr(STDERR_FILENO, old_termios_p); /* fiddle echo */
-//TODO: die if the above fails?
+	if (tcgetattr(STDERR_FILENO, old_termios_p) < 0)
+		bb_simple_perror_msg_and_die("tcgetattr");
 	memcpy(&new, old_termios_p, sizeof(new));
 	new.c_cflag |= (CLOCAL | CREAD);
 	new.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
