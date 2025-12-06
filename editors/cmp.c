@@ -146,7 +146,7 @@ int cmp_main(int argc UNUSED_PARAM, char **argv)
 					line_pos = c1;	/* line_pos is unused in the -l case. */
 				}
 				fprintf(outfile, fmt, filename1, filename2, char_pos, line_pos, c2);
-				if (opt) {	/* This must be -l since not -s. */
+				if (opt & CMP_OPT_l) {
 					/* If we encountered an EOF,
 					 * the while check will catch it. */
 					continue;
