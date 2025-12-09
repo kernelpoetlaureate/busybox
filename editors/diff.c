@@ -1040,6 +1040,7 @@ int diff_main(int argc UNUSED_PARAM, char **argv)
 		bb_simple_error_msg_and_die("no support for directory comparison");
 #endif
 	} else {
+		if (S_ISDIR(stb[0].st_mode) != S_ISDIR(stb[1].st_mode)) return 2;
 		bool dirfile = S_ISDIR(stb[0].st_mode) || S_ISDIR(stb[1].st_mode);
 		bool dir = S_ISDIR(stb[1].st_mode);
 		if (dirfile) {
