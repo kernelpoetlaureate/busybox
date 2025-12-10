@@ -157,7 +157,7 @@ int mv_main(int argc, char **argv)
 							goto RET_1;
 						}
 					}
-					if (unlink(dest) < 0) {
+					if ((dest_exists == 3 ? rmdir(dest) : unlink(dest)) < 0) {
 						bb_perror_msg("can't remove '%s'", dest);
 						goto RET_1;
 					}
@@ -179,7 +179,7 @@ int mv_main(int argc, char **argv)
 			status = 1;
 		}
  RET_0:
-		if (flags & OPT_VERBOSE) {
+		if ((flags & OPT_VERBOSE) && status == 0) {
 			printf("'%s' -> '%s'\n", *argv, dest);
 		}
 		if (dest != last) {
